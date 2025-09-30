@@ -1,13 +1,13 @@
 server:
-  port: 9095
-
+  port: 9090
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8094/eureka}
+      #defaultZone: http://localhost:8090/eureka
+      defaultZone: ${EUREKA_URI:http://localhost:8091/eureka}
   instance:
+    #hostname: localhost
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-
 spring:
   application:
     name: ms-gateway-server
@@ -21,15 +21,15 @@ spring:
               enabled: true
               lower-case-service-id: true
           routes:
-            - id: ms-matricula
-              uri: lb://ms-matricula
+            - id: ms-empleo
+              uri: lb://ms-empleo
               predicates:
-                - Path=/matriculas/**
-            - id: ms-curso
-              uri: lb://ms-curso
+                - Path=/empleos/**
+            - id: ms-persona
+              uri: lb://ms-persona
               predicates:
-                - Path=/cursos/**
-
-              # Si tu servicio real no expone /categoria/...:
-              # filters:
-              #   - StripPrefix=1
+                - Path=/personas/**
+            - id: ms-pais
+              uri: lb://ms-pais
+              predicates:
+                - Path=/pais/**
