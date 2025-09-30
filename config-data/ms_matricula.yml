@@ -4,20 +4,28 @@ spring:
 
   datasource:
     url: jdbc:postgresql://localhost:3306/ms_matricula
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password:
-    driver-class-name: com.mysql.cj.jdbc.Driver
+
 
   jpa:
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
 
 
 
 server:
   port: 7569
 
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /doc/swagger-ui.html
 
 eureka:
   client:
