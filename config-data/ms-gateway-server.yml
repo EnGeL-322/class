@@ -29,6 +29,15 @@ spring:
               uri: lb://ms-producto
               predicates:
                 - Path=/producto/**
+            - id: ms-matricula
+              uri: lb://ms-matricula
+              predicates:
+                - Path=/matriculas/**
+            - id: ms-curso
+              uri: lb://ms-curso
+              predicates:
+                - Path=/cursos/**
+
               # Si tu servicio real no expone /categoria/...:
               # filters:
               #   - StripPrefix=1

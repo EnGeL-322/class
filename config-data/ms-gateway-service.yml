@@ -29,6 +29,7 @@ spring:
               uri: lb://ms-curso
               predicates:
                 - Path=/cursos/**
+
               # Si tu servicio real no expone /categoria/...:
               # filters:
               #   - StripPrefix=1
