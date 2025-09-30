@@ -3,11 +3,10 @@ spring:
     name: ms-matricula
 
   datasource:
-    url: jdbc:postgresql://localhost:3306/ms_matricula
+    url: jdbc:mysql://localhost:3306/ms_matricula
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password:
-
 
   jpa:
     hibernate:
@@ -15,10 +14,8 @@ spring:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
 
-
-
 server:
-  port: 7569
+  port: 8493
 
 springdoc:
   api-docs:
@@ -33,3 +30,13 @@ eureka:
       defaultZone: http://localhost:8094/eureka
   instance:
     hostname: localhost
+  resilience4j.circuitbreaker:
+      instances:
+        pedidoListarPorIdCB:
+          registerHealthIndicator: true
+          slidingWindowSize: 10
+          permittedNumberOfCallsInHalfOpenState: 3
+          slidingWindowType: TIME_BASED
+          minimumNumberOfCalls: 4
+          waitDurationInOpenState: 5s
+
